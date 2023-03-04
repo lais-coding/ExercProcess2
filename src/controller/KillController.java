@@ -87,7 +87,7 @@ public class KillController {
 
 		String pidw = "TASKKILL /PID"; //Comando no Windows
 		String pidl = "kill -9"; //Comando no Linux
-		String way = "cmd /c";
+		String way = "cmd /c"; //CMD Windows
 		
 	
 			StringBuffer buffer = new StringBuffer();
@@ -125,23 +125,65 @@ public class KillController {
 						e.printStackTrace(); //Caso não dê certo, apresente o erro
 					}
 				 
-					
-			
 			
 					}  
 			 
-							
-			 
+	}
+	
+	
+			//4 - Matar processo por nome
+	
+	public void MatarNome(String nome) {
+		
+		String nomew = "TASKKILL /IM"; //Comando para matar por nome no Windows
+		String nomel = "pkill -f"; //Comando para matar por nome no Linux
+		String way = "cmd /c"; //CMD no Windows
+		
+		StringBuffer buffer = new StringBuffer();
+		
+		String sistema = System.getProperty("os.name");
+		
+	//Caso seja Windows
+		
+		if(sistema.contains("Windows")) {
+		try {					
+			//Tente executar o kill no Windows
+				buffer.append(way);
+				buffer.append("");
+				buffer.append(nomew);
+				buffer.append(" ");
+				buffer.append(nome);
+				Runtime.getRuntime().exec(buffer.toString());
+			} catch (Exception e) {
+				e.printStackTrace(); //Caso não dê certo, apresente o erro
+			} 
 			
 		
+			} 
 		
-	
+		
+		//Caso seja Linux
+		
+		 if (sistema.contains("Linux")) {
+			 try {	
+				 	//Tente executar o kill no Linux
+					buffer.append(nomel);
+					buffer.append(" ");
+					buffer.append(nome);
+				} catch (Exception e) {
+					e.printStackTrace(); //Caso não dê certo, apresente o erro
+				}
+			 
+		
+				}  
+		 
+		
+		
+		
 	}
+	
+	
 }
 			
-		//}
-		
-//	}
-	
 	
 

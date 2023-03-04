@@ -34,6 +34,10 @@ public class Main {
 				int pid = Integer.parseInt(JOptionPane.showInputDialog("Digite o PID do processo: "));
 				k.MatarPID(pid);
 				break;
+			case 4:
+				String nome = JOptionPane.showInputDialog("Digite o nome do processo: ");
+				k.MatarNome(nome);
+				break;
 		}
 		
 	}
