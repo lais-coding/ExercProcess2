@@ -13,6 +13,9 @@ public class KillController {
 		super();
 	}
 
+
+	
+	
 	
 	// 1 - Identificar Sistema Operacional
 	public String IdentificarSO(String os) {
@@ -80,15 +83,65 @@ public class KillController {
 	
 	//3 - Matar processo por PID
 	
-	//public void MatarPID(String pid) {
+	public void MatarPID(int pid) {
+
+		String pidw = "TASKKILL /PID"; //Comando no Windows
+		String pidl = "kill -9"; //Comando no Linux
+		String way = "cmd /c";
 		
-		//String sistema = System.getProperty("os.name");
+	
+			StringBuffer buffer = new StringBuffer();
+			
+			String sistema = System.getProperty("os.name");
+			
+			//Caso seja Windows
+			
+			if(sistema.contains("Windows")) {
+				try {					
+				//Tente executar o kill no Windows
+					buffer.append(way);
+					buffer.append("");
+					buffer.append(pidw);
+					buffer.append(" ");
+					buffer.append(pid);
+					Runtime.getRuntime().exec(buffer.toString());
+				} catch (Exception e) {
+					e.printStackTrace(); //Caso não dê certo, apresente o erro
+				} 
+				
+			
+				} 
+			
+			
+			//Caso seja Linux
+			
+			 if (sistema.contains("Linux")) {
+				 try {	
+					 	//Tente executar o kill no Linux
+						buffer.append(pidl);
+						buffer.append(" ");
+						buffer.append(pid);
+					} catch (Exception e) {
+						e.printStackTrace(); //Caso não dê certo, apresente o erro
+					}
+				 
+					
+			
+			
+					}  
+			 
+							
+			 
+			
 		
-		//if(sistema.contains("WINDOWS")) {
-			//String comandopid = "TASKKILL /PID"
+		
+	
+	}
+}
+			
 		//}
 		
 //	}
 	
 	
-}
+
