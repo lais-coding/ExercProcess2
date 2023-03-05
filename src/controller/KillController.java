@@ -18,7 +18,7 @@ public class KillController {
 	
 	
 	// 1 - Identificar Sistema Operacional
-	public String IdentificarSO(String os) {
+	private String IdentificarSO() {
 		String oos = System.getProperty("os.name");
 		JOptionPane.showMessageDialog(null, "O Sistema Operacional nessa máquina é " +oos);
 		return oos;
